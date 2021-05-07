@@ -355,6 +355,9 @@ void game::Resrest()
 	_bar1.erase(_bar1.begin(), _bar1.end());
 	_bar2.erase(_bar2.begin(), _bar2.end());
 	_heart.erase(_heart.begin(), _heart.end());
+	choose_player = true;
+	playing = false;
+	first_time = true;
 	score = 0;
 	_ball.x = 200;
 	_ball.y = 100;
@@ -363,12 +366,10 @@ void game::Resrest()
 void game::gameloop()
 {
 	SDL_Event e;
-	//main game running
 	Mix_PlayMusic(Music, -1);
 	while (start)
 	{
 		SDL_Delay(10);
-		//Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
 			if (menu1)
@@ -412,12 +413,10 @@ void game::gameloop()
 				case SDL_MOUSEBUTTONDOWN:
 				{
 					SDL_GetMouseState(&xm, &ym);
-					//start
 					if (xm > 250 && xm < 350 && ym > 300 && ym < 350) {
 						playing = true;
 						menu2 = false;
 					}
-					//quit
 					if (xm > 250 && xm < 420 && ym > 370 && ym < 420) {
 						Resrest();
 						playing = true;
@@ -445,11 +444,11 @@ void game::gameloop()
 				{
 
 					SDL_GetMouseState(&xm, &ym);
-					if (xm > 350 && xm < 600 && ym > 350 && ym < 800) {
+					if (xm > 300 && xm < 600 && ym > 100 && ym < 800) {
 						_ball.animationIDLE();
 						SDL_RenderCopy(renderer, DogIdle, &_ball.playersourceRect, &_ball.DogdesRect);
 					}
-					if (xm > 0 && xm < 250 && ym > 350 && ym < 800) {
+					if (xm > 0 && xm < 300 && ym > 100 && ym < 800) {
 						_ball.animationIDLE();
 						SDL_RenderCopy(renderer, CatIdle, &_ball.playersourceRect, &_ball.CatdesRect);
 					}
@@ -461,14 +460,14 @@ void game::gameloop()
 				{
 
 					//start
-					if (xm > 0 && xm < 250 && ym > 350 && ym < 800) {
+					if (xm > 0 && xm < 300 && ym > 450 && ym < 800) {
 						first_time = false;
 						_choose = true;
 						playing = true;
 						choose_player = false;
 					}
 
-					if (xm > 350 && xm < 600 && ym > 350 && ym < 800) {
+					if (xm > 300 && xm < 600 && ym > 450 && ym < 800) {
 						first_time = false;
 						_choose = false;
 						playing = true;
@@ -539,7 +538,7 @@ void game::gameloop()
 			Resrest();
 			Mix_PlayMusic(Music, -1);
 			menu1 = true;
-			playing = false;
+			choose_player = false;
 		}
 
 	}

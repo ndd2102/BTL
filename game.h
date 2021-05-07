@@ -13,24 +13,12 @@ class game
 {
 public:
 
-	/*CREATE A GAME WINDOW AND A RENDERER FOR THAT WINDOW , PASSING IN THE WIDTH AND THE HEIGHT OF THAT WINDOW
-	* FLAGS 1 for FULLSCREEN , 4 for SHOWN
-	*/
-
 	bool start = true;
 
-	//if showing menu
 	bool menu1 = true;
 	bool menu2 = false;
 
-	//if gamer are playing the game
 	bool playing = false;
-
-	//make main character OP
-	bool op = true;
-
-	//if lose the game
-	bool lose = false;
 
 	bool choose_player = false;
 
@@ -52,14 +40,12 @@ public:
 	bool _move = true;
 	bool sound1 = true;
 	bool sound2 = true;
-	bool sound_jump = false;
 	bool _choose = true;
 	bool first_time = true;
 	bool _cat = false;
 	bool _dog = false;
 	int n = 10;
 	int count_die = 0;
-	bool CheckM(int& x, int& y, SDL_Rect& rect);
 private:
 
 	long long health;
@@ -87,7 +73,6 @@ private:
     //item
 	SDL_Texture* Heart_cat;
 	SDL_Texture* Heart_dog;
-    SDL_Texture* slow;
 
 
 	//bar
